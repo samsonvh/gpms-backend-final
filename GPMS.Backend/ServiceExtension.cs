@@ -26,27 +26,16 @@ namespace GPMS.Backend
 {
     public static class ServiceExtension
     {
-        public static void ConfigureService(this IServiceCollection services, IConfiguration configuration)
+        public static void ConfigureService(this IServiceCollection services)
         {
-            
-           
-            
-
-            //config DBContext
-            services.AddDbContext<GPMSDbContext>(options =>
-            options.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"]));
-
             //Add Auto Mapper
             services.AddAutoMapper(typeof(AutoMapperProfileUtils).Assembly);
-
-            
-
             //Add Service 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IDepartmentService, DepartmentService>();
-            services.AddScoped<IStaffService, StaffService>();  
+            services.AddScoped<IStaffService, StaffService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ISemiFinishedProductService, SemiFinishProductService>();
@@ -60,20 +49,20 @@ namespace GPMS.Backend
             services.AddScoped<IStepIOService, StepIOService>();
 
             //Add IValidator
-            services.AddTransient<IValidator<LoginInputDTO>,LoginInputDTOValidator>();
+            services.AddTransient<IValidator<LoginInputDTO>, LoginInputDTOValidator>();
             services.AddTransient<IValidator<AccountInputDTO>, AccountInputDTOValidator>();
-            services.AddTransient<IValidator<ProductInputDTO>,ProductInputDTOValidator>();
-            services.AddTransient<IValidator<ProductDefinitionInputDTO>,ProductDefinitionInputDTOValidator>();
-            services.AddTransient<IValidator<CategoryInputDTO>,CategoryInputDTOValidator>();
-            services.AddTransient<IValidator<SemiFinishedProductInputDTO>,SemiFinishedProductInputDTOValidator>();
-            services.AddTransient<IValidator<MaterialInputDTO>,MaterialInputDTOValidator>();
-            services.AddTransient<IValidator<SpecificationInputDTO>,SpecificationInputDTOValidator>();
-            services.AddTransient<IValidator<MeasurementInputDTO>,MeasurementInputDTOValidator>();
-            services.AddTransient<IValidator<BOMInputDTO>,BOMInputDTOValidator>();
-            services.AddTransient<IValidator<QualityStandardInputDTO>,QualityStandardInputDTOValidator>();
-            services.AddTransient<IValidator<ProcessInputDTO>,ProcessInputDTOValidator>();
-            services.AddTransient<IValidator<StepInputDTO>,StepInputDTOValidator>();
-            services.AddTransient<IValidator<StepIOInputDTO>,StepIOInputDTOValidator>();
+            services.AddTransient<IValidator<ProductInputDTO>, ProductInputDTOValidator>();
+            services.AddTransient<IValidator<ProductDefinitionInputDTO>, ProductDefinitionInputDTOValidator>();
+            services.AddTransient<IValidator<CategoryInputDTO>, CategoryInputDTOValidator>();
+            services.AddTransient<IValidator<SemiFinishedProductInputDTO>, SemiFinishedProductInputDTOValidator>();
+            services.AddTransient<IValidator<MaterialInputDTO>, MaterialInputDTOValidator>();
+            services.AddTransient<IValidator<SpecificationInputDTO>, SpecificationInputDTOValidator>();
+            services.AddTransient<IValidator<MeasurementInputDTO>, MeasurementInputDTOValidator>();
+            services.AddTransient<IValidator<BOMInputDTO>, BOMInputDTOValidator>();
+            services.AddTransient<IValidator<QualityStandardInputDTO>, QualityStandardInputDTOValidator>();
+            services.AddTransient<IValidator<ProcessInputDTO>, ProcessInputDTOValidator>();
+            services.AddTransient<IValidator<StepInputDTO>, StepInputDTOValidator>();
+            services.AddTransient<IValidator<StepIOInputDTO>, StepIOInputDTOValidator>();
 
             //Add Mapper
             services.AddAutoMapper(typeof(AutoMapperProfileUtils));

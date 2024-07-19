@@ -6,19 +6,20 @@ using GPMS.Backend.Middlewares;
 using GPMS.Backend.Services.Utils;
 using GPMS.Backend.Services.Utils.Validators;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
- //Init JWT Util 1 time for using Configuration
+//Init JWT Util 1 time for using Configuration
 JWTUtils.Initialize(configuration);
 //Add Serilog 
 Log.Logger = new LoggerConfiguration()
 .ReadFrom.Configuration(configuration)
 .CreateLogger();
 // Add services to the container.
-builder.Services.ConfigureService(configuration);
+builder.Services.ConfigureService();
 //Config Authentication with JWT
 builder.Services.AddAuthentication(config =>
 {
@@ -43,6 +44,9 @@ builder.Services.AddAuthentication(config =>
         )
     };
 });
+//config DBContext
+builder.Services.AddDbContext<GPMSDbContext>(options =>
+options.UseSqlServer(configuration["ConnectionStrings:DefaultConnection"]));
 builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
