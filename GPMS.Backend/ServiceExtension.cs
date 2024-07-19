@@ -28,8 +28,9 @@ namespace GPMS.Backend
     {
         public static void ConfigureService(this IServiceCollection services, IConfiguration configuration)
         {
-            //Init JWT Util 1 time for using Configuration
-            JWTUtils.Initialize(configuration);
+            
+           
+            
 
             //config DBContext
             services.AddDbContext<GPMSDbContext>(options =>
@@ -38,30 +39,7 @@ namespace GPMS.Backend
             //Add Auto Mapper
             services.AddAutoMapper(typeof(AutoMapperProfileUtils).Assembly);
 
-            //Config Authentication with JWT
-            services.AddAuthentication(config =>
-            {
-                config.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                config.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                config.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                config.DefaultForbidScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = configuration["JWT:Issuer"],
-                    ValidAudience = configuration["JWT:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey
-                    (
-                        Encoding.UTF8.GetBytes(configuration["JWT:Secret_Key"])
-                    )
-                };
-            });
+            
 
             //Add Service 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

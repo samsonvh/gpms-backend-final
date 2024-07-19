@@ -23,9 +23,12 @@ namespace GPMS.Backend.Services.Utils
         public static void Initialize(IConfiguration configuration)
         {
             _configuration = configuration;
+            
         }
         public static string GenerateJWTToken(Account account)
         {
+            System.Console.WriteLine("Test"+_configuration["JWT:Expires"]);
+            System.Console.WriteLine("Test"+_configuration["JWT:Secret_Key"]);
             var claims = new List<Claim> {
                 new Claim("StaffId",account.Staff.Id.ToString()),
                 new Claim(ClaimTypes.NameIdentifier, account.Code.ToString()),
