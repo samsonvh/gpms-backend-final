@@ -5,6 +5,10 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPMS.Backend", "GPMS.Backend\GPMS.Backend.csproj", "{51E9E8E1-F872-440D-AA28-D04BB04B31A7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GPMS.Backend.Data", "GPMS.Backend.Data\GPMS.Backend.Data.csproj", "{64E98512-F829-45AB-BAE8-E108CB03CEFB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GPMS.Backend.Services", "GPMS.Backend.Services\GPMS.Backend.Services.csproj", "{18817CF3-D5F8-44CA-A7EB-DCE515AF22F9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
